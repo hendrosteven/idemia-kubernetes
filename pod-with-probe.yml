@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-probe
+  labels:
+    app: webserver
+    env: dev
+spec:
+  containers:
+    - name: nginx
+      image: nginx:latest
+      ports:
+        - containerPort: 80
+      livenessProbe:
+        httpGet:
+          path: /healthz
+          port: 80
+        initialDelaySeconds: 2 # wait 2 seconds before starting the probe
+        periodSeconds: 10 # check every 10 seconds
+        timeoutSeconds: 2 # wait 2 second for the probe to respond
+        successThreshold: 1 # if the probe succeeds 1 time, the container is considered healthy
+        failureThreshold: 3 # if the probe fails 3 times, the container is considered unhealthy
