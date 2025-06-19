@@ -72,7 +72,10 @@ metadata:
   name: nginx-ingress
   labels:
     name: nginx-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
+  ingressClassName: nginx
   rules:
     - host: nginx.ingress.local
       http:
