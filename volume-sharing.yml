@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: nginx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      name: nginx
+  template:
+    metadata:
+      name: nginx
+      labels:
+        name: nginx
+    spec:
+      volumes:
+        - name: html
+          emptyDir: {}
+      containers:
+        - name: app-writer
+          image: hendrosteven/generate-html:1.0
+          volumeMounts:
+            - mountPath: /app/html
+              name: html
+        - name: nginx
+          image: nginx
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - mountPath: /usr/share/nginx/html
+              name: html
