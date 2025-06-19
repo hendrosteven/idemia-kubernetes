@@ -17,9 +17,16 @@ spec:
     spec:
       containers:
         - name: app-web
-          image: hendrosteven/app-web:2.0
+          image: hendrosteven/app-web:1.0
           ports:
             - containerPort: 3000
+          resources:
+            requests:
+              cpu: 500m # 2 core
+              memory: 500Mi # 500 MB
+            limits:
+              cpu: 1000m
+              memory: 1000Mi
 
 ---
 
