@@ -12,5 +12,7 @@ spec:
      image: nginx:latest
      ports:
        - containerPort: 80
+ nodeSelector:
+   disktype: ssd
    
 
