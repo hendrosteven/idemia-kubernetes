@@ -16,3 +16,5 @@ spec:
                 - -c
                 - date; echo "Hello from Kubernetes CronJob!"
           restartPolicy: OnFailure # OnFailure is the default
+  successfulJobsHistoryLimit: 3 # Keep the last 3 successful jobs
+  failedJobsHistoryLimit: 1 # Keep the last failed job
